@@ -1,10 +1,18 @@
 <template>
-  <h1>{{ title }}</h1>
+  <div>
+    <h1>{{ title }}</h1>
+    <heroes></heroes>
+  </div>
 </template>
 
 <script>
+import Heroes from '@/components/Heroes';
+
 export default {
   name: "app",
+  components: {
+    Heroes
+  },
   data: () => {
     return {
       title: "Tour of Heroes"
