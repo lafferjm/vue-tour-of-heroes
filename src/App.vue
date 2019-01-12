@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <heroes></heroes>
+    <nav>
+      <router-link to="/heroes">Heroes</router-link>
+    </nav>
+    <router-view />
   </div>
 </template>
 
