@@ -12,23 +12,19 @@
 </template>
 
 <script>
-import HEROES from '../../mock-heroes';
+import axios from 'axios';
 
 export default {
   name: "hero-detail",
-  props: {
-    hero: Object
-  },
   data: () => {
     return {
+      hero: null
     };
   },
-  computed: {
-    hero: function() {
-      const id = this.$route.params.id;
-      const hero = HEROES.find(hero => hero.id == id);
-      return hero;
-    }
+  mounted: async function() {
+    const id = this.$route.params.id;
+    const response = await axios.get(`http://localhost:3000/heroes/${id}`);
+    this.hero = response.data;
   },
   methods: {
     goBack: function() {

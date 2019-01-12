@@ -12,13 +12,17 @@
 </template>
 
 <script>
-import HEROES from '../../mock-heroes';
+import axios from 'axios';
 
 export default {
   data: () => {
     return {
-      heroes: HEROES.slice(1, 5)
+      heroes: null
     };
+  },
+  mounted: async function() {
+    const response = await axios.get('http://localhost:3000/heroes');
+    this.heroes = response.data.slice(1, 5);
   }
 }
 </script>

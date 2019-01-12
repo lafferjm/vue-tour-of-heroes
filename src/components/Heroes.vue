@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import HEROES from '../../mock-heroes';
 import HeroDetail from '@/components/HeroDetail';
+import axios from 'axios';
 
 export default {
   name: 'heroes',
@@ -22,8 +22,12 @@ export default {
   },
   data: () => {
     return {
-      heroes: HEROES
+      heroes: null
     };
+  },
+  mounted: async function() {
+    const response = await axios.get('http://localhost:3000/heroes');
+    this.heroes = response.data;
   }
 }
 </script>
