@@ -2,11 +2,12 @@
   <div>
     <h2>My Heroes</h2>
     <ul class="heroes">
-      <li v-for="hero in heroes" v-bind:key="hero.id" v-on:click="selectHero(hero)" v-bind:class="{selected: hero === selectedHero}">
-        <span class="badge">{{ hero.id }}</span> {{ hero.name}}
+      <li v-for="hero in heroes" v-bind:key="hero.id">
+        <router-link v-bind:to="`/detail/${hero.id}`">
+          <span class="badge">{{ hero.id }}</span> {{ hero.name}}
+        </router-link>
       </li>
     </ul>
-    <hero-detail v-bind:hero="selectedHero"></hero-detail>
   </div>
 </template>
 
@@ -21,23 +22,13 @@ export default {
   },
   data: () => {
     return {
-      heroes: HEROES,
-      selectedHero: null
+      heroes: HEROES
     };
-  },
-  methods: {
-    selectHero: function (hero) {
-      this.selectedHero = hero;
-    }
   }
 }
 </script>
 
 <style scoped>
-.selected {
-  background-color: #cfd8dc !important;
-  color: white
-}
 .heroes {
   margin: 0 0 2em 0;
   list-style-type: none;
@@ -45,39 +36,46 @@ export default {
   width: 15em;
 }
 .heroes li {
-  cursor: pointer;
   position: relative;
-  left: 0;
-  background-color: #eeeeee;
+  cursor: pointer;
+  background-color: #EEE;
   margin: .5em;
   padding: .3em 0;
   height: 1.6em;
   border-radius: 4px;
 }
-.heroes li.selected:hover {
-  background-color: #bbd8dc !important;
-  color: white;
-}
+ 
 .heroes li:hover {
-  color: #607d8b;
-  background-color: #dddddd;
+  color: #607D8B;
+  background-color: #DDD;
   left: .1em;
 }
-.heroes .text {
+ 
+.heroes a {
+  color: #888;
+  text-decoration: none;
   position: relative;
-  top: -3px;
+  display: block;
+  width: 250px;
 }
+ 
+.heroes a:hover {
+  color:#607D8B;
+}
+ 
 .heroes .badge {
   display: inline-block;
   font-size: small;
   color: white;
   padding: 0.8em 0.7em 0 0.7em;
-  background-color: #607d8b;
+  background-color: #607D8B;
   line-height: 1em;
   position: relative;
   left: -1px;
   top: -4px;
   height: 1.8em;
+  min-width: 16px;
+  text-align: right;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }

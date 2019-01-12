@@ -2,11 +2,11 @@
   <div>
     <h3>Top Heroes</h3>
     <div class="grid grid-pad">
-      <a v-for="hero in heroes" class="col-1-4" v-bind:key="hero.id">
+      <router-link v-for="hero in heroes" class="col-1-4" v-bind:key="hero.id" v-bind:to="`/detail/${hero.id}`">
         <div class="module hero">
           <h4>{{ hero.name }}</h4>
         </div>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>

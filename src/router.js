@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import Heroes from './components/Heroes';
 import Dashboard from './components/Dashboard';
+import HeroDetail from './components/HeroDetail';
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard
+    },
+    {
+      path: '/detail/:id',
+      name: 'details',
+      component: HeroDetail
     }
   ]
 });
