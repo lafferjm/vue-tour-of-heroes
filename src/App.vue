@@ -2,6 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <nav>
+      <router-link to="/dashboard">Dashboard</router-link>
       <router-link to="/heroes">Heroes</router-link>
     </nav>
     <router-view />
