@@ -6,23 +6,19 @@
         <span class="badge">{{ hero.id }}</span> {{ hero.name}}
       </li>
     </ul>
-
-    <div v-if="selectedHero">
-      <h2>{{ selectedHero.name | uppercase }} Details</h2>
-      <div><span>id: </span>{{ selectedHero.id }}</div>
-      <div>
-        <label>name:
-          <input v-model="selectedHero.name" placeholder="name">
-        </label>
-      </div>
-    </div>
+    <hero-detail v-bind:hero="selectedHero"></hero-detail>
   </div>
 </template>
 
 <script>
 import HEROES from '../../mock-heroes';
+import HeroDetail from '@/components/HeroDetail';
 
 export default {
+  name: 'heroes',
+  components: {
+    HeroDetail
+  },
   data: () => {
     return {
       heroes: HEROES,
@@ -32,11 +28,6 @@ export default {
   methods: {
     selectHero: function (hero) {
       this.selectedHero = hero;
-    }
-  },
-  filters: {
-    uppercase: value => {
-      return value.toUpperCase();
     }
   }
 }
