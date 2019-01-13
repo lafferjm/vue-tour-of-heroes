@@ -16,6 +16,7 @@
         <router-link v-bind:to="`/detail/${hero.id}`">
           <span class="badge">{{ hero.id }}</span> {{ hero.name}}
         </router-link>
+        <button class="delete" title="delete hero" v-on:click="deleteHero(hero)">x</button>
       </li>
     </ul>
   </div>
@@ -47,6 +48,11 @@ export default {
       });
       this.heroName = '';
       this.heroes.push(response.data);
+    },
+    deleteHero: async function(deletedHero) {
+      await axios.delete(`http://localhost:3000/heroes/${deletedHero.id}`);
+      const heroFiltered = this.heroes.filter(hero => hero.id !== deletedHero.id);
+      this.heroes = heroFiltered;
     }
   }
 }
@@ -68,13 +74,13 @@ export default {
   height: 1.6em;
   border-radius: 4px;
 }
- 
+
 .heroes li:hover {
   color: #607D8B;
   background-color: #DDD;
   left: .1em;
 }
- 
+
 .heroes a {
   color: #888;
   text-decoration: none;
@@ -82,11 +88,11 @@ export default {
   display: block;
   width: 250px;
 }
- 
+
 .heroes a:hover {
   color:#607D8B;
 }
- 
+
 .heroes .badge {
   display: inline-block;
   font-size: small;
@@ -102,5 +108,27 @@ export default {
   text-align: right;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+}
+
+button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button.delete {
+  position: relative;
+  left: 194px;
+  top: -32px;
+  background-color: gray !important;
+  color: white;
 }
 </style>
