@@ -6,16 +6,17 @@
       <router-link to="/heroes">Heroes</router-link>
     </nav>
     <router-view />
+    <messages></messages>
   </div>
 </template>
 
 <script>
-import Heroes from '@/components/Heroes';
+import Messages from '@/components/Messages';
 
 export default {
   name: "app",
   components: {
-    Heroes
+    Messages
   },
   data: () => {
     return {

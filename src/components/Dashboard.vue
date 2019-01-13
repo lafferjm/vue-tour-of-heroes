@@ -23,6 +23,7 @@ export default {
   mounted: async function() {
     const response = await axios.get('http://localhost:3000/heroes');
     this.heroes = response.data.slice(1, 5);
+    this.$store.dispatch('addMessage', 'HeroService: fetched heroes');
   }
 }
 </script>

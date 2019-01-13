@@ -40,6 +40,7 @@ export default {
   mounted: async function() {
     const response = await axios.get('http://localhost:3000/heroes');
     this.heroes = response.data;
+    this.$store.dispatch('addMessage', 'HeroService: fetched heroes');
   },
   methods: {
     add: async function() {
@@ -48,11 +49,13 @@ export default {
       });
       this.heroName = '';
       this.heroes.push(response.data);
+      this.$store.dispatch('addMessage', 'HeroService: added hero');
     },
     deleteHero: async function(deletedHero) {
       await axios.delete(`http://localhost:3000/heroes/${deletedHero.id}`);
       const heroFiltered = this.heroes.filter(hero => hero.id !== deletedHero.id);
       this.heroes = heroFiltered;
+      this.$store.dispatch('addMessage', `HeroService: deleted hero ${deletedHero.id}`);
     }
   }
 }

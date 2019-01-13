@@ -26,6 +26,7 @@ export default {
     const id = this.$route.params.id;
     const response = await axios.get(`http://localhost:3000/heroes/${id}`);
     this.hero = response.data;
+    this.$store.dispatch('addMessage', `HeroService: get hero id: ${id}`);
   },
   methods: {
     goBack: function() {
@@ -34,6 +35,7 @@ export default {
     save: async function() {
       const id = this.$route.params.id;
       await axios.put(`http://localhost:3000/heroes/${id}`, this.hero);
+      this.$store.dispatch('addMessage', `HeroService: updated hero with id ${id}`);
       this.goBack();
     }
   }
